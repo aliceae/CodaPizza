@@ -1,5 +1,6 @@
 package com.dev.codapizza.ui
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -42,9 +43,10 @@ private fun ToppingCellPreviewOnLeftHalf() {
 fun ToppingCell(
     topping: Topping,
     placement: ToppingPlacement?,
-    modifier: Modifier = Modifier,
-    onClickTopping: () -> Unit
+    onClickTopping: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
+//    Log.d("ToppingCell","Called ToppingCell for $topping")
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
@@ -54,7 +56,7 @@ fun ToppingCell(
     ) {
         Checkbox(
             checked = (placement != null),
-            onCheckedChange = {/*todo*/ }
+            onCheckedChange = { onClickTopping() }
         )
         Column(
             modifier = Modifier
@@ -67,7 +69,7 @@ fun ToppingCell(
             )
             if (placement != null) {
                 Text(
-                    text = "stringResource(placement.label)",
+                    text = stringResource(placement.label),
                     style = MaterialTheme.typography.body2
                 )
             }
