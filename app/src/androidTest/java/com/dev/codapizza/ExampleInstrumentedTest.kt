@@ -7,6 +7,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import org.junit.Rule
+import org.junit.After
+import com.microsoft.appcenter.espresso.Factory
+import com.microsoft.appcenter.espresso.ReportHelper
+import org.junit.Before
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,6 +20,20 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    @JvmField
+    @Rule
+    val reportHelper: ReportHelper = Factory.getReportHelper()
+
+    @Before
+    fun setUp() {
+        reportHelper.label("Starting App")
+    }
+    @After
+    fun tearDown() {
+        reportHelper.label("Stopping App")
+    }
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
